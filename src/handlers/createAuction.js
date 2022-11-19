@@ -10,8 +10,8 @@
   }
 
   return {
-    "statusCode": 200,
-    "body": JSON.stringify(event)
+    "statusCode": 201,
+    "body": JSON.stringify(auction)
   };
 
 };
