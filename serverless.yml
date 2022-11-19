@@ -9,4 +9,8 @@ provider:
 
 functions:
   createAuction:
-    handler: handler.createAuction
+    handler: src/handlers/createAuction.handler
+    events:
+      - http:
+          method: POST
+          path: /auction
