@@ -1,14 +1,14 @@
- import {v4 as uuid} from 'uuid'
- import AWS from 'aws-sdk'
+ const uuid = require('uuid');
+ const AWS = require('aws-sdk')
  
- const dynamodb = AWS.DynamoDB.DocumentClient();
+ const dynamodb = new AWS.DynamoDB.DocumentClient();
  async function createAuction(req) {
 
   const { title } = JSON.parse(req.body);
   const now = new Date();
 
   const auction = {
-    id: uuid(),
+    id: uuid.v4(),
     title,
     status: 'OPEN',
     createdAt: now.toISOString()
