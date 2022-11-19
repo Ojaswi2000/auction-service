@@ -1,6 +1,6 @@
- async function createAuction(event) {
+ async function createAuction(req) {
 
-  const { title } = JSON.parse(event.body);
+  const { title } = JSON.parse(req.body);
   const now = new Date();
 
   const auction = {
