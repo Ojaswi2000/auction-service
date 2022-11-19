@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Ojaswi2000/auction-service#readme",
   "dependencies": {
+    "aws-sdk": "^2.1258.0",
     "uuid": "^9.0.0"
   }
 }
