@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Ojaswi2000/auction-service/issues"
   },
-  "homepage": "https://github.com/Ojaswi2000/auction-service#readme"
+  "homepage": "https://github.com/Ojaswi2000/auction-service#readme",
+  "dependencies": {
+    "uuid": "^9.0.0"
+  }
 }
