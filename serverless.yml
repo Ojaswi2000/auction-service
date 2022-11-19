@@ -6,6 +6,12 @@ provider:
   name: aws
   runtime: nodejs12.x
   profile: serverlessUser
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+      Resource:
+        - arn:aws:dynamodb:us-east-1:279081456875:table/AuctionsTable
 
 resources:
   Resources:
