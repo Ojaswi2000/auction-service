@@ -1,15 +1,15 @@
  const uuid = require('uuid');
- const AWS = require('aws-sdk')
- const middy = require('@middy/core');
- const httpEventNormalizer = require('@middy/http-event-normalizer');
- const httpErrorHandler = require('@middy/http-error-handler');
- const httpJsonBodyParser = require('@middy/http-json-body-parser');
- const createError = require('http-errors');
+ const AWS = require('aws-sdk');
+//  const middy = require('@middy/core');
+//  const httpEventNormalizer = require('@middy/http-event-normalizer');
+//  const httpErrorHandler = require('@middy/http-error-handler');
+//  const httpJsonBodyParser = require('@middy/http-json-body-parser');
+ const {createError} = require('http-errors');
  
  const dynamodb = new AWS.DynamoDB.DocumentClient();
  async function createAuction(req) {
 
-  const { title } = req.body;
+  const { title } = JSON.parse(req.body);
   const now = new Date();
 
   const auction = {
@@ -25,7 +25,7 @@
       Item: auction
     }).promise();
   } catch (error) {
-    console.log(error);
+    console.error(error);
     throw new createError.InternalServerError(error);
   }
 
@@ -38,7 +38,8 @@
 
 };
 
-module.exports.handler = middy(createAuction)
-.use(httpJsonBodyParser())
-.use(httpEventNormalizer())
-.use(httpErrorHandler())
+module.exports.handler = createAuction
+// module.exports.handler = middy(createAuction)
+// .use(httpJsonBodyParser())
+// .use(httpEventNormalizer())
+// .use(httpErrorHandler())
