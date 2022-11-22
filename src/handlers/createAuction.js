@@ -4,11 +4,12 @@
  const httpEventNormalizer = require('@middy/http-event-normalizer');
  const httpErrorHandler = require('@middy/http-error-handler');
  const httpJsonBodyParser = require('@middy/http-json-body-parser');
+ const createError = require('http-errors');
  
  const dynamodb = new AWS.DynamoDB.DocumentClient();
  async function createAuction(req) {
 
-  const { title } = JSON.parse(req.body);
+  const { title } = req.body;
   const now = new Date();
 
   const auction = {
@@ -18,10 +19,17 @@
     createdAt: now.toISOString()
   }
 
-  await dynamodb.put({
-    TableName: 'AuctionsTable',
-    Item: auction
-  }).promise();
+  try {
+      await dynamodb.put({
+      TableName: 'AuctionsTable',
+      Item: auction
+    }).promise();
+  } catch (error) {
+    console.log(error);
+    throw new createError.InternalServerError(error);
+  }
+
+
 
   return {
     "statusCode": 201,
