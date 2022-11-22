@@ -30,4 +30,7 @@
 
 };
 
-module.exports.handler = createAuction;
+module.exports.handler = middy(createAuction)
+.use(httpJsonBodyParser())
+.use(httpEventNormalizer())
+.use(httpErrorHandler())
