@@ -6,7 +6,9 @@ async function getAuctions(req) {
 
   let auctions;
   try {
-    
+    const result = await dynamodb.scan({
+      TableName : 'AuctionsTable'
+    })
   } catch (error) {
     console.error(error);
     throw new createError.InternalServerError(error);
