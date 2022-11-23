@@ -11,6 +11,7 @@ provider:
       Action:
         - dynamodb:PutItem
         - dynamodb:Scan
+        - dynamodb:GetItem
       Resource:
         - arn:aws:dynamodb:us-east-1:279081456875:table/AuctionsTable
 
@@ -48,4 +49,4 @@ functions:
     events:
       - http:
           method: GET
-          path: /auctions/{id}
+          path: /auction/{id}
