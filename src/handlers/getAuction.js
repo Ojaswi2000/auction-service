@@ -10,7 +10,7 @@ async function getAuction(req) {
     const result = await dynamodb.get({
       TableName : 'AuctionsTable',
       Key : {id}
-    })
+    }).promise()
     auction = result.Item;
 
   } catch (error) {
