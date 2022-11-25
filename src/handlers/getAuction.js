@@ -24,7 +24,7 @@ module.exports.getAuctionById = async(id) => {
 
 async function getAuction(req) {
   const { id } = req.pathParameters;
-  const auction = getAuctionById(id);
+  const auction = await getAuctionById(id);
   return{
     statusCode : 200,
     body : JSON.stringify(auction)
