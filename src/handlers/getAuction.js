@@ -3,7 +3,7 @@ const createError = require('http-errors');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-async function getAuctionById(id)
+export async function getAuctionById(id)
 {
   let auction;
   try {

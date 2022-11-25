@@ -1,5 +1,6 @@
 const AWS = require('aws-sdk');
 const createError = require('http-errors');
+const {getAuctionById} = require('./getAuction');
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 async function placeBid(req) {
