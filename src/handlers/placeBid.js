@@ -8,7 +8,7 @@ async function placeBid(req) {
   const { id } = req.pathParameters;
   const { amount } = JSON.parse(req.body);
   const auction = getAuctionById(id);
-  if(amount < auction.highestBid.amount)
+  if(amount <= auction.highestBid.amount)
   throw new createError.Forbidden(`Your Bid Must Be Higher than ${auction.highestBid.amount}`);
 
   const params = {
