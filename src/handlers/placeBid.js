@@ -9,7 +9,12 @@ async function placeBid(req) {
   const { amount } = JSON.parse(req.body);
   const auction = getAuctionById(id);
   if(amount <= auction.highestBid.amount)
-  throw new createError.Forbidden(`Your Bid Must Be Higher than ${auction.highestBid.amount}`);
+  {
+    return{
+      statusCode : 400,
+      body : `Your Bid Must Be Higher than ${auction.highestBid.amount}`
+    }
+  }
 
   const params = {
     TableName: 'AuctionsTable',
