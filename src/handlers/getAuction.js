@@ -17,7 +17,10 @@ module.exports.getAuctionById = async(id) => {
     throw new createError.InternalServerError(error);
   }
   if(!auction){
-    throw new createError.NotFound(`Auction with ID ${id} not found`);
+    return{
+      statusCode : 404,
+      Message : `Auction with ID ${id} not found`
+    }
   }
   return auction;
 }

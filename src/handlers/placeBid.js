@@ -7,7 +7,7 @@ async function placeBid(req) {
 
   const { id } = req.pathParameters;
   const { amount } = JSON.parse(req.body);
-  const auction = getAuctionById(id);
+  const auction = await getAuctionById(id);
   if(amount <= auction.highestBid.amount)
   {
     return{
