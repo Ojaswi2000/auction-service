@@ -1,10 +1,18 @@
 const { getEndedAuctions } = require('../lib/getEndedAuctions');
 const { closeAuction } = require('../lib/closeAuction');
+const createError = require('http-errors')
 
 async function processauctions(){
-  const auctionsToClose = await getEndedAuctions();
-  const closedPromises = auctionsToClose.map(auction => closeAuction(auction.id));
-  Promise.all(closedPromises);
+
+  try {
+    const auctionsToClose = await getEndedAuctions();
+    const closedPromises = auctionsToClose.map(auction => closeAuction(auction.id));
+    Promise.all(closedPromises);    
+  } catch (error) {
+    console.error(error);
+    throw new createError.InternalServerError(error);
+  }
+
 }
 
 module.exports.handler = processauctions;
