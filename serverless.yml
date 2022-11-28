@@ -13,8 +13,17 @@ provider:
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:UpdateItem
+        - dynamodb:Query
       Resource:
         - arn:aws:dynamodb:us-east-1:279081456875:table/AuctionsTable
+        - !JOIN [
+            "/",
+            [
+              "arn:aws:dynamodb:us-east-1:279081456875:table/AuctionsTable",
+              "index",
+              "statusAndEndDate",
+            ],
+          ]
 
 resources:
   Resources:
