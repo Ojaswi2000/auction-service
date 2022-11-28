@@ -10,7 +10,11 @@ async function placeBid(req) {
   const auction = await getAuctionById(id);
   if(auction.status !== 'OPEN')
   {
-    throw new createError.Forbidden("You cannot place bid on Closed auctions")
+    return{
+      errorCode: 404,
+      errorMessage : "You cannot place bid on Closed auctions"
+    }
+    // throw new createError.Forbidden("You cannot place bid on Closed auctions")
   }
 
   if(amount <= auction.highestBid.amount)
