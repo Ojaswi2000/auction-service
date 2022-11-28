@@ -16,7 +16,7 @@ provider:
         - dynamodb:Query
       Resource:
         - arn:aws:dynamodb:us-east-1:279081456875:table/AuctionsTable
-        - !JOIN [
+        - !Join [
             "/",
             [
               "arn:aws:dynamodb:us-east-1:279081456875:table/AuctionsTable",
