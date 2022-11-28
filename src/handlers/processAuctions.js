@@ -2,7 +2,7 @@ const { getEndedAuctions } = require('../lib/getEndedAuctions');
 const { closeAuction } = require('../lib/closeAuction');
 const createError = require('http-errors')
 
-async function processauctions(){
+async function processAuctions(){
 
   try {
     const auctionsToClose = await getEndedAuctions();
@@ -16,4 +16,4 @@ async function processauctions(){
 
 }
 
-module.exports.handler = processauctions;
+module.exports.handler = processAuctions;

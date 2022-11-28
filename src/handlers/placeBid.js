@@ -8,6 +8,11 @@ async function placeBid(req) {
   const { id } = req.pathParameters;
   const { amount } = JSON.parse(req.body);
   const auction = await getAuctionById(id);
+  if(auction.status !== 'OPEN')
+  {
+    throw new createError.Forbidden("You cannot place bid on Closed auctions")
+  }
+
   if(amount <= auction.highestBid.amount)
   {
     return{
